@@ -10,10 +10,13 @@ let player = new Player();
 let enemy = new Enemy();
 let over = false;
 init();
-let unitInterval;
-unitInterval = setInterval(move, 1000/2);
-function init() {
 
+let interval;
+let gamer = {
+    time:0,
+    level:1,
+};
+function init() {
     player.coord.x = 10;
     player.coord.y = 18;
     enemy.coord.x = 10;
@@ -22,6 +25,12 @@ function init() {
     obj.push(enemy);
     enemy.map = map;
     player.map = map;
+
+    addvertWall(0,  0, 19);
+    addvertWall(19,  0, 19);
+
+    addhorWall(0,  19, 0);
+    addhorWall(0,  20, 19);
 
     addvertWall(3,  3, 7);
     addvertWall(4,  3, 7);
@@ -47,7 +56,6 @@ function init() {
     addvertWall(2,  10, 17);
     addvertWall(17,  10, 17);
 
-    put();
     repaint();
 }
 function clear() {
@@ -97,13 +105,11 @@ document.addEventListener('keydown', (event)=>{
     else if(keyId===32){
         let bul = player.fire();
         obj.push(bul);
-        inteval = setInterval(f, 10);
+        interval = setInterval(f, 10);
     }
     put();
     repaint();
 });
-
-let inteval = 0;
 
 function f() {
     for(let i = 0;i<obj.length;i++)
@@ -117,6 +123,7 @@ function move() {
     let b = enemy.scan();
     if(b!==null){
         obj.push(b);
+        interval = setInterval(f, 10);
     }
     enemy.move({x:player.coord.x, y:player.coord.y});
     put();

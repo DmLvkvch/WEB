@@ -195,36 +195,93 @@ class Enemy extends Unit{
         this.path = null;
     }
 
-    scan(){
-        if(this.direction===Direction.W){
-            for(let i = this.coord.y;i>=0;i--){
+    scan() {
+        if (this.direction === Direction.W) {
+            let pos = -999;
+            let tmp = 0;
+            for (let i = this.coord.y; i >= 0; i--) {
+                /*
+                if(!(this.map.map[this.coord.x][i] instanceof Player) && this.map.map[this.coord.x][i]!==0 && !(this.map.map[this.coord.x][i] instanceof Enemy)) {
+                    return null;
+                }
+                 */
+                if (this.map.map[this.coord.x][i] instanceof Block && !(this.map.map[this.coord.x][i] instanceof Enemy)) {
+                    tmp = i;
+                    break;
+                }
+
+                if (this.map.map[this.coord.x][i] instanceof Player) {
+                    pos = i;
+                }
+            }
+            if (pos < tmp) {
+                return null;
+            }
+
+        } else if (this.direction === Direction.S) {
+            let pos = 999;
+            let tmp = 0;
+            for (let i = this.coord.y; i < 20; i++) {
+                /*
                 if(!(this.map.map[this.coord.x][i] instanceof Player) && this.map.map[this.coord.x][i]!==0 && !(this.map.map[this.coord.x][i] instanceof Enemy)){
                     return null;
                 }
-            }
-        }
 
-        else if(this.direction===Direction.S){
-            for(let i = this.coord.y;i<20;i++){
-                if(!(this.map.map[this.coord.x][i] instanceof Player) && this.map.map[this.coord.x][i]!==0 && !(this.map.map[this.coord.x][i] instanceof Enemy)){
-                    return null;
+                 */
+                if (this.map.map[this.coord.x][i] instanceof Block && !(this.map.map[this.coord.x][i] instanceof Enemy)) {
+                    tmp = i;
+                    break;
+                }
+
+                if (this.map.map[this.coord.x][i] instanceof Player) {
+                    pos = i;
                 }
             }
-        }
-
-        else if(this.direction===Direction.D){
-            for(let i = this.coord.x;i<20;i++){
-                if(!(this.map.map[i][this.coord.y] instanceof Player) && this.map.map[i][this.coord.y]!==0 && !(this.map.map[this.coord.x][i] instanceof Enemy)){
+            if (pos > tmp) {
+                return null;
+            }
+        } else if (this.direction === Direction.D) {
+            let pos = 999;
+            let tmp = 0;
+            for (let i = this.coord.x; i < 20; i++) {
+                /*
+                if(!(this.map.map[i][this.coord.y] instanceof Player) && this.map.map[i][this.coord.y]!==0 &&!(this.map.map[i][this.coord.y] instanceof Enemy)){
                     return null;
+                }
+
+                 */
+                if (this.map.map[i][this.coord.y] instanceof Block && !(this.map.map[i][this.coord.y] instanceof Enemy)) {
+                    tmp = i;
+                    break;
+                }
+
+                if (this.map.map[i][this.coord.y] instanceof Player) {
+                    pos = i;
                 }
             }
-        }
-
-        else if(this.direction===Direction.A){
-            for(let i = this.coord.x;i>=0;i--){
-                if(!(this.map.map[i][this.coord.y] instanceof Player) && this.map.map[i][this.coord.y]!==0 && !(this.map.map[this.coord.x][i] instanceof Enemy)){
+            if (pos > tmp) {
+                return null;
+            }
+        } else if (this.direction === Direction.A) {
+            let pos = -999;
+            let tmp = 0;
+            for (let i = this.coord.x; i >= 0; i--) {
+                /*
+                if(!(this.map.map[i][this.coord.y] instanceof Player) && this.map.map[i][this.coord.y]!==0 && !(this.map.map[i][this.coord.y] instanceof Enemy)){
                     return null;
                 }
+                 */
+                if (this.map.map[i][this.coord.y] instanceof Block && !(this.map.map[i][this.coord.y] instanceof Enemy)) {
+                    tmp = i;
+                    break;
+                }
+
+                if (this.map.map[i][this.coord.y] instanceof Player) {
+                    pos = i;
+                }
+            }
+            if (pos < tmp) {
+                return null;
             }
         }
         return this.fire();
