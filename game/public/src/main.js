@@ -10,7 +10,7 @@ let player = new Player();
 let enemy = new Enemy();
 let over = false;
 init();
-
+//let unitInterval = setInterval(move, 1000/2);
 let interval;
 let gamer = {
     time:0,

@@ -128,6 +128,7 @@ class Bullet extends Unit{
         let i = this.coord.x;
         let j = this.coord.y;
         ctx.fillStyle = 'red';
+
         if(this.direction===Direction.W)
             ctx.fillRect(i+0.35, j, 0.25, 0.25);
         if(this.direction===Direction.S)
@@ -136,6 +137,18 @@ class Bullet extends Unit{
             ctx.fillRect(i, j+0.35, 0.25, 0.25);
         if(this.direction===Direction.A)
             ctx.fillRect(i, j+0.35, 0.25, 0.25);
+         /*
+
+        ctx.beginPath();
+        ctx.arc(i-0.2, j, 0.2, 0, 2 * Math.PI, false);
+        ctx.fillStyle = 'red';
+        ctx.fill();
+        ctx.lineWidth = 0.01;
+        ctx.strokeStyle = '#003300';
+        ctx.stroke();
+        ctx.moveTo(i, j);
+
+         */
     }
 
     onTouch(x, y){
