@@ -8,9 +8,10 @@ let map = new Map();
 let obj = [];
 let player = new Player();
 let enemy = new Enemy();
+//let enemy1 = new Enemy();
 let over = false;
 init();
-//let unitInterval = setInterval(move, 1000/2);
+let unitInterval = setInterval(move, 1000/2);
 let interval;
 let gamer = {
     time:0,
@@ -25,6 +26,11 @@ function init() {
     obj.push(enemy);
     enemy.map = map;
     player.map = map;
+
+   // enemy1.coord.x = 12;
+    //enemy1.coord.y = 1;
+    //obj.push(enemy1);
+    //enemy1.map = map;
 
     addvertWall(0,  0, 19);
     addvertWall(19,  0, 19);
@@ -115,17 +121,50 @@ function f() {
     for(let i = 0;i<obj.length;i++)
         if((obj[i] instanceof Bullet)) {
             obj[i].move();
+            if(obj[i].onTouch().id===1){
+                obj.splice(i, 1);
+                repaint();
+                return;
+            }
+            else if(obj[i].onTouch().id===2){
+                let tmp = obj[i].onTouch();
+                obj.splice(i, 1);
+                for(let j = 0;j<obj.length;j++){
+                    if(obj[j] instanceof Enemy && obj[j].coord.x===tmp.i && obj[j].coord.y===tmp.j){
+                        obj.splice(j, 1);
+                        enemy = null;
+                        repaint();
+                        return;
+                    }
+                }
+            }
+            else if(obj[i].onTouch().id===3){
+                obj.splice(i, 1);
+                for(let j = 0; j < obj.length; j++) {
+                    if(obj[j] instanceof Player) {
+                        obj.splice(j, 1);
+                        
+                        repaint();
+                        return;
+                    }
+                }
+            }
         }
     repaint()
 }
 
 function move() {
-    let b = enemy.scan();
+    let b = null;
+    if(enemy===null)
+        return;
+    b = enemy.scan();
     if(b!==null){
+        console.log(b);
         obj.push(b);
         interval = setInterval(f, 10);
     }
     enemy.move({x:player.coord.x, y:player.coord.y});
+    //enemy1.move({x:player.coord.x, y:player.coord.y});
     put();
     map.draw(context);
     for(let i = 0;i<obj.length;i++)

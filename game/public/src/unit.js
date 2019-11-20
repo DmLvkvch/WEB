@@ -151,8 +151,55 @@ class Bullet extends Unit{
          */
     }
 
-    onTouch(x, y){
-        return this.map.map[x][y] instanceof Block;
+    onTouch(){
+        if(this.direction===Direction.S){
+            if(this.map.map[this.coord.x][this.coord.y+1] instanceof Block) {
+                return {id:1};
+            }
+            else if(this.map.map[this.coord.x][this.coord.y+1] === 0){
+                return {id:0};
+            }
+            else if(this.map.map[this.coord.x][this.coord.y+1] instanceof Enemy)
+                return {id:2, i:this.coord.x, j:this.coord.y+1};
+            else if(this.map.map[this.coord.x][this.coord.y+1] instanceof Player)
+                return {id:3};
+        }
+        else if(this.direction===Direction.W) {
+            if(this.map.map[this.coord.x][this.coord.y-1] instanceof Block) {
+                return {id:1};
+            }
+            else if(this.map.map[this.coord.x][this.coord.y-1] === 0){
+                return {id:0};
+            }
+            else if(this.map.map[this.coord.x][this.coord.y-1] instanceof Enemy)
+                return {id:2, i:this.coord.x, j:this.coord.y-1};
+            else if(this.map.map[this.coord.x][this.coord.y-1] instanceof Player)
+                return {id:3};
+        }
+        else if(this.direction===Direction.A){
+            if(this.map.map[this.coord.x-1][this.coord.y] instanceof Block) {
+                return {id:1};
+            }
+            else if(this.map.map[this.coord.x-1][this.coord.y] === 0){
+                return {id:0};
+            }
+            else if(this.map.map[this.coord.x-1][this.coord.y] instanceof Enemy)
+                return {id:2, i:this.coord.x-1, j:this.coord.y};
+            else if(this.map.map[this.coord.x-1][this.coord.y] instanceof Player)
+                return {id:3};
+        }
+        else {
+            if(this.map.map[this.coord.x+1][this.coord.y] instanceof Block) {
+                return {id:1};
+            }
+            else if(this.map.map[this.coord.x+1][this.coord.y] === 0){
+                return {id:0};
+            }
+            else if(this.map.map[this.coord.x+1][this.coord.y] instanceof Enemy)
+                return {id:2, i:this.coord.x+1, j:this.coord.y};
+            else if(this.map.map[this.coord.x+1][this.coord.y] instanceof Player)
+                return {id:3};
+        }
     }
 
     move() {
