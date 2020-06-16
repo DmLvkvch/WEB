@@ -5,6 +5,11 @@ MessageModel::MessageModel(QSharedPointer<QList<Message>> _logs): QAbstractTable
     this->rows = _logs->size();
 }
 
+MessageModel::~MessageModel()
+{
+
+}
+
 int MessageModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);

@@ -2,6 +2,7 @@
 #define LOGSWIDGETFORM_H
 
 #include <QAbstractTableModel>
+#include <QSortFilterProxyModel>
 #include <QWidget>
 #include "message.h"
 namespace Ui {
@@ -21,6 +22,7 @@ private:
     QAbstractTableModel* model;
     QSharedPointer<QList<Message>> _logs;
     Ui::LogsWidgetForm *ui;
+    QSortFilterProxyModel *m;
 };
 
 #endif // LOGSWIDGETFORM_H

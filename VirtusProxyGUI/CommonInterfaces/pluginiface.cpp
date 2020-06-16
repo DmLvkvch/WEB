@@ -21,6 +21,7 @@ QSharedPointer<QList<Message>> PluginIFace::messageList()
     {
         messages->append(iface->messageList());
     }
+    qDebug()<<"plugif "<<messages.data()<<" "<<messages<<" "<<messages.get();
     return messages;
 }
 

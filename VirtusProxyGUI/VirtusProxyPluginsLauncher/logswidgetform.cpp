@@ -15,7 +15,7 @@ LogsWidgetForm::LogsWidgetForm(QSharedPointer<QList<Message>> logs, QWidget *par
     ui->tableView->horizontalHeader()->setVisible(true);
     ui->tableView->show();
     ui->tableView->setSortingEnabled(true);
-    QSortFilterProxyModel *m = new QSortFilterProxyModel(this);
+    m = new QSortFilterProxyModel(this);
     m->setSourceModel(model);
     ui->tableView->setModel(m);
 
@@ -23,7 +23,8 @@ LogsWidgetForm::LogsWidgetForm(QSharedPointer<QList<Message>> logs, QWidget *par
 
 LogsWidgetForm::~LogsWidgetForm()
 {
-    //delete model;
+    delete m;
+    delete model;
     delete ui;
 }
 

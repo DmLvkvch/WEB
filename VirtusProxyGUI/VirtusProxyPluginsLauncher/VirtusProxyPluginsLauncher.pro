@@ -24,7 +24,6 @@ SOURCES += \
     mainwindow.cpp \
     mainwindowsettings.cpp \
     messagemodel.cpp \
-    modalwidget.cpp \
     pluginhandler.cpp \
     pluginloader.cpp \
     pluginviewcontroller.cpp \
@@ -38,7 +37,6 @@ HEADERS += \
     mainwindow.h \
     mainwindowsettings.h \
     messagemodel.h \
-    modalwidget.h \
     pluginhandler.h \
     pluginloader.h \
     pluginviewcontroller.h \
