@@ -1,0 +1,10 @@
+взаимодействие между handler, controller и loader через сигналы
+Удаление:
+сигнал deletePluginWidget об удалении плагина -> слот handlePluginDeleted у controller (удаляется из hash и delete)->
+сигнал pluginViewRemoved у controller->слот handlePluginViewRemoved у handler (вызывается stop удаляется из qlist и эмитится сигнал pluginStopped)
+->из loader вызывается слот на удаление плагина 
+если закрывается приложение то в деструкторе controller, handler и loader все удаляется
+Добавление:
+из window сигнал loadNewPlugin->слот handleLoadNewPlugin у loader->вырабаывается сигнал (при успешной загрузке либы)->добавляются плагины в handler и controller
+qlist<settingsitem> в handler заменю на что то другое, иначе непонятно как устанавливатся будут настройки для каждого интерфейса
+сортировка сортирует (нужно нажать на название столбца), но для первого столбца результат неправильный и вообще может приложение сломаться в какой то момент.
