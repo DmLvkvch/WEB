@@ -15,6 +15,7 @@
 #include <QMenu>
 #include <QMenuBar>
 #include <QMessageBox>
+#include <QSignalMapper>
 
 MainWindow::MainWindow(PluginViewController controller, QWidget *parent)
     : QMainWindow(parent)
@@ -91,7 +92,6 @@ void MainWindow::handleIconActivated(QSystemTrayIcon::ActivationReason reason)
             this->hide();
         }
         break;
-
     default:
         break;
     }
@@ -110,7 +110,7 @@ void MainWindow::handleAddPluginWidget(QWidget* widget)
 {
     PluginWidgetForm* pluginWidget = qobject_cast<PluginWidgetForm*>(widget);
     this->ui->_pluginsWidget->layout()->addWidget(pluginWidget);
-    QObject::connect(pluginWidget, &PluginWidgetForm::closePlugin, this, &MainWindow::handleDeleteWidgetPlugin);
+    QObject::connect(pluginWidget, &PluginWidgetForm::closePlugin, [=](){this->handleDeleteWidgetPlugin(pluginWidget);});
 }
 
 void MainWindow::handleLoadNewPlugin()
@@ -157,23 +157,17 @@ void MainWindow::handleGridChanged(int rows, int columns)
     }
 }
 
-void MainWindow::handleShowMessage(const QString &title, const QString &message)
+void MainWindow::handleShowMessage(QString title, QString message)
 {
     QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon(QSystemTrayIcon::Information);
     trayIcon->showMessage(title, message, icon, 2000);
-    trayIcon->show();
 }
 
 
 void MainWindow::handleDeleteWidgetPlugin(PluginWidgetForm* plugin)
 {
-    int n = QMessageBox::warning(0, tr("Предупреждение"), tr("Плагин будет удален. Продолжить?"),
-                                 tr("Да"), tr("Нет"), QString(), 0, 1);
-    if(n==0)
-    {
-        this->_widgetsLayout->removeWidget(plugin);
-        emit deletePluginWidget(plugin);
-    }
+    this->_widgetsLayout->removeWidget(plugin);
+    emit deletePluginWidget(plugin);
 }
 
 MainWindow::~MainWindow()

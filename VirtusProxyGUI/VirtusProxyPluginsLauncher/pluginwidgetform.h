@@ -21,7 +21,7 @@ private slots:
     void handleOnSettingsClicked();
     void handleClose();
 signals:
-    void closePlugin(PluginWidgetForm*);
+    void closePlugin();
 private:
     PluginIFace* _plugin = nullptr;
     Ui::PluginWidgetForm *ui;

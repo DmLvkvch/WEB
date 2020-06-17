@@ -29,8 +29,6 @@ signals:
     void messageReceived(PluginIFace*, const Message & message);
     void newEvent(PluginIFace*, QEvent);
     void messageNotification(const QString &title, const QString &message);
-private slots:
-    void handleMsgReceived(const Message & message);
 private:
     QHash<PluginIFace*, QWidget*> _plugins;
 };

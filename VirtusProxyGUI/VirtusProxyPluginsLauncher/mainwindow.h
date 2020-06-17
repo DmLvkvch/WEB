@@ -39,7 +39,7 @@ signals:
 public slots:
     void handleDeleteWidgetPlugin(PluginWidgetForm*);
     void handleAddPluginWidget(QWidget*);
-    void handleShowMessage(const QString &title, const QString &message);
+    void handleShowMessage(QString title, QString message);
     void handleStyleChanged(const QString &style);
 protected:
     void closeEvent(QCloseEvent * event) override;

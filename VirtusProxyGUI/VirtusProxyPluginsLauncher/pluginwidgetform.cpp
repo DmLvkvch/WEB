@@ -10,6 +10,7 @@
 #include <QMap>
 #include <QDebug>
 #include <QCommonStyle>
+#include <QMessageBox>
 
 PluginWidgetForm::PluginWidgetForm(PluginIFace* plugin, QWidget *parent) :
     QWidget(parent),_plugin(plugin),
@@ -32,7 +33,12 @@ PluginWidgetForm::PluginWidgetForm(PluginIFace* plugin, QWidget *parent) :
 
 void PluginWidgetForm::handleClose()
 {
-    emit closePlugin(this);
+    int n = QMessageBox::warning(0, tr("Предупреждение"), tr("Плагин будет удален. Продолжить?"),
+                                 tr("Да"), tr("Нет"), QString(), 0, 1);
+    if(n==0)
+    {
+        emit closePlugin();
+    }
 }
 
 void PluginWidgetForm::paintEvent(QPaintEvent * e)

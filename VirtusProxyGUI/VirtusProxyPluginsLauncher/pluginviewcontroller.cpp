@@ -18,7 +18,7 @@ QWidget* PluginViewController::addPlugin(PluginIFace *plugin)
 {
     QWidget* widget = new PluginWidgetForm(plugin);
     this->_plugins.insert(plugin, widget);
-    QObject::connect(plugin, &PluginIFace::received, this, &PluginViewController::handleMsgReceived);
+    QObject::connect(plugin, &PluginIFace::received, [=](const Message & message){this->handleMessageReceived(plugin, message);});
     return widget;
 }
 
@@ -79,14 +79,3 @@ void PluginViewController::handlePluginCreated(PluginIFace* plugin)
     emit pluginCreated(addPlugin(plugin));
 }
 
-void PluginViewController::handleMsgReceived(const Message &message)
-{
-    for(auto it = _plugins.begin(); it!=_plugins.end(); ++it)
-    {
-        if(this->sender()==it.key())
-        {
-            handleMessageReceived(it.key(), message);
-            return;
-        }
-    }
-}
