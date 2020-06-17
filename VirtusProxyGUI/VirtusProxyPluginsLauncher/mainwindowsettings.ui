@@ -26,66 +26,70 @@
     <string>Сохранить</string>
    </property>
   </widget>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>251</width>
-     <height>51</height>
+     <width>388</width>
+     <height>52</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
+   <layout class="QHBoxLayout" name="horizontalLayout_3">
     <item>
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>Размер сетки</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>строки</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="comboBox"/>
-        </item>
-       </layout>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Размер сетки</string>
+        </property>
+       </widget>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <widget class="QLabel" name="label_3">
-          <property name="text">
-           <string>столбцы</string>
-          </property>
-         </widget>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>строки</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBox"/>
+          </item>
+         </layout>
         </item>
         <item>
-         <widget class="QComboBox" name="comboBox_2"/>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>столбцы</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBox_2"/>
+          </item>
+         </layout>
         </item>
        </layout>
       </item>
      </layout>
     </item>
+    <item>
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>Тема:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="_themeMod"/>
+    </item>
    </layout>
-  </widget>
-  <widget class="QComboBox" name="_themeMod">
-   <property name="geometry">
-    <rect>
-     <x>280</x>
-     <y>40</y>
-     <width>73</width>
-     <height>22</height>
-    </rect>
-   </property>
   </widget>
  </widget>
  <resources/>

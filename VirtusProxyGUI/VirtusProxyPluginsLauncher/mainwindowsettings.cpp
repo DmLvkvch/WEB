@@ -14,6 +14,7 @@ MainWindowSettings::MainWindowSettings(int count, QWidget *parent) :
     initComboBox();
     QObject::connect(ui->comboBox, &QComboBox::currentTextChanged,
                      this, &MainWindowSettings::handleRowComboBoxChanged);
+    this->ui->_themeMod->addItem("Default");
     this->ui->_themeMod->addItem("Dark");
     this->ui->_themeMod->addItem("Light");
 }

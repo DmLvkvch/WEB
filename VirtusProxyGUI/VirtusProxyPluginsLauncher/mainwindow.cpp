@@ -124,8 +124,8 @@ void MainWindow::handleLoadNewPlugin()
 void MainWindow::handleStyleChanged(const QString & style){
     QFile file;
     if(style.toLower()=="dark")
-        file.setFileName(":/dark.qss");
-    else
+        file.setFileName(":qdarkstyle/style.qss");
+    else if(style.toLower()=="light")
         file.setFileName(":/light.qss");
     file.open(QFile::ReadOnly | QFile::Text);
     QTextStream stream(&file);
@@ -159,20 +159,16 @@ void MainWindow::handleGridChanged(int rows, int columns)
 
 void MainWindow::handleShowMessage(const QString &title, const QString &message)
 {
-
-    this->trayIcon->showMessage(QString(title), QString(message), QIcon(), 10000);
+    QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon(QSystemTrayIcon::Information);
+    trayIcon->showMessage(title, message, icon, 2000);
+    trayIcon->show();
 }
 
 
 void MainWindow::handleDeleteWidgetPlugin(PluginWidgetForm* plugin)
 {
-    int n = QMessageBox::warning(0, tr("Warning"), tr("Плагин будет удален. Продолжить?"),
-                                 tr("Да"),
-                                 tr("Нет"),
-                                 QString(),
-                                 0,
-                                 1
-                                 );
+    int n = QMessageBox::warning(0, tr("Предупреждение"), tr("Плагин будет удален. Продолжить?"),
+                                 tr("Да"), tr("Нет"), QString(), 0, 1);
     if(n==0)
     {
         this->_widgetsLayout->removeWidget(plugin);

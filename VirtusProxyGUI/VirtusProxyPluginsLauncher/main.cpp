@@ -4,18 +4,14 @@
 #include <QTextCodec>
 #include <QFile>
 #include <QTextStream>
+#include <QFileDialog>
 #include "pluginloader.h"
 #include "pluginhandler.h"
 #include "pluginviewcontroller.h"
 #include "pluginiface.h"
-
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    QFile file(":/dark.qss");
-    file.open(QFile::ReadOnly | QFile::Text);
-    QTextStream stream(&file);
-    a.setStyleSheet(stream.readAll());
     PluginLoader loader;
     PluginHandler handler;
     PluginViewController viewController;
